@@ -4,7 +4,6 @@ Template.header.helpers({
 
   },
   rendered: function(){
-     console.log('hi');
   },
   destroyed: function(){
 
