@@ -20,9 +20,14 @@ Meteor.methods({
     var spotifyApi = new SpotifyWebApi();
     var genres = [];
     var tracks = [];
+
+
     // get the genre object from each genreId
-    _.each(genreIds, function(genreId){
-      genres.push(Genres.findOne({ _id : genreId }));
+    _.each(genreIds.genres, function(genreId) {
+      var genre = Genres.findOne({ _id : genreId });
+      if (genre) {
+        genres.push(genre);
+      }
     });
 
     if(!genres || genres.length <= 0) {
@@ -49,7 +54,7 @@ Meteor.methods({
         // continue to next genre in each loop.
         return; // this does not return from method.call
       }
-      
+
       var genrePlaylist = response.data.body.playlists;
       var selectedPlaylist = genrePlaylist.items.pop();
 
@@ -103,5 +108,5 @@ var successfulApiGetResponse = function(response) {
     console.log("There was an error with an API call. ", response.statusCode, response.error);
     return false;
   }
-   return true;
+  return true;
 };
