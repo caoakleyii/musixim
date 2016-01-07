@@ -1,3 +1,18 @@
+Template.genre_card.onRendered(function(){
+  var genreIds = Session.get('playlist');
+
+  // check to see if this current genre is in their session play list.
+  // if so show the added button.
+  if (genreIds && genreIds.indexOf(this.data._id) >= 0) {
+    this.$('#btn-add').addClass('hide');
+    this.$('#btn-added').removeClass('hide');
+  } else {
+    this.$('#btn-add').removeClass('hide');
+    this.$('#btn-added').addClass('hide');
+  }
+
+});
+
 Template.genre_card.events({
 
   /*
