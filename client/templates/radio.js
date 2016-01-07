@@ -2,8 +2,9 @@
 Template.radio.onRendered(function(){
 
   Meteor.call('getTracksFromGenres', this.data, function(error, result) {
-    console.log(result);
+    $('.load-spinner').hide();
     createPlayer(result);
+
   });
 
 });

@@ -46,7 +46,7 @@ Meteor.methods({
       }
 
       randomTracks = getRandomTracks(selectedPlaylists, 25);
-      console.log(randomTracks);
+      
       if (!randomTracks) {
         return;
       }
