@@ -45,15 +45,16 @@ Meteor.methods({
         return; // this does not return from method.call
       }
 
-      tracks = getRandomTracks(selectedPlaylists, 25);
-
-      if (!tracks) {
+      randomTracks = getRandomTracks(selectedPlaylists, 25);
+      console.log(randomTracks);
+      if (!randomTracks) {
         return;
       }
+      tracks = tracks.concat(randomTracks);
 
     });
 
-
+    shuffle(tracks);
     return tracks;
   }
 });
@@ -80,24 +81,22 @@ var getRandomPlaylists = function(genre, amount){
 
   var playlists = response.data.body.playlists;
 
-  if (amount > playlists.total) {
-    amount = playlists.total;
+  if (amount > playlists.items.length) {
+    amount = playlists.items.length;
   }
 
   var previousIndexes = [];
-  console.log(playlists.total);
   while(selectedPlaylists.length < amount) {
     var randomIndex;
     var indexFound = false;
     while (!indexFound) {
-      randomIndex = randomNumber(0, playlists.total);
+      randomIndex = randomNumber(0, playlists.items.length);
       if (typeof previousIndexes[randomIndex] !== "number"){
         indexFound = true;
       }
     }
 
     previousIndexes[randomIndex] = 1;
-    console.log(randomIndex);
     selectedPlaylist = playlists.items[randomIndex];
     selectedPlaylists.push(selectedPlaylist);
   }
@@ -112,7 +111,6 @@ var getRandomPlaylists = function(genre, amount){
 
 var getRandomTracks = function(selectedPlaylists, amount){
   var tracks = [];
-  console.log(selectedPlaylists);
   while(tracks.length < amount) {
     tracks = tracks.concat(_.map(selectedPlaylists, getRandomTrack));
   }
@@ -149,7 +147,7 @@ var getRandomTrack = function(selectedPlaylist){
   var randomIndex;
   var indexFound = false;
   while (!indexFound) {
-    randomIndex = randomNumber(0, playlistTracks.total);
+    randomIndex = randomNumber(0, playlistTracks.items.length);
     if (typeof previousIndexes[randomIndex] !== "number"){
       indexFound = true;
     }
@@ -199,10 +197,36 @@ var successfulApiGetResponse = function(response) {
 
 /**
 * Generates a random number using Math.random() using the provided range.
+* If lower bound is 0, and upper bound is 5, results could be 0, 1, 2, 3, 4
 *
 * @param {number} lowerBound - Lower bound is inclusive.
-* @param {number} upperBound - Upper bound is inclusive
+* @param {number} upperBound - Upper bound is exclusive
 */
 var randomNumber = function(lowerBound, upperBound){
-  return Math.floor((Math.random() * (upperBound + 1)) + lowerBound);
+  return Math.floor((Math.random() * (upperBound)) + lowerBound);
 };
+
+/**
+ * Shuffles an array using Fisher-Yates Shuffle (aka Knuth)
+ *
+ * @param {Array} array - The array to be shuffled
+ * @returns {Array} Returns the shuffled array.
+ */
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
