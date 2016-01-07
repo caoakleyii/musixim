@@ -25,7 +25,7 @@ function createPlayer(tracks){
     stringOfTrackIds += "," + id;
   });
   var playerIframe =
-  '<iframe src="https://embed.spotify.com/?uri=spotify:trackset:MUSIXIM:|TRACKS|" frameborder="0" allowtransparency="true"></iframe>';
+  '<iframe src="https://embed.spotify.com/?uri=spotify:trackset:MUSIXIM:|TRACKS|" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>';
 
   playerIframe = playerIframe.replace('|TRACKS|', stringOfTrackIds);
 
