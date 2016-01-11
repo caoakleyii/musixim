@@ -25,21 +25,32 @@ Template.home.events({
   * @param {object} Template - The instance of the template where the event fired.
   */
   "click #btn-jam-out": function(event, template){
-    var genreList = Session.get('playlist');
-    Router.go('radio', { genreList: genreList });
+    var genreList = Session.get('genre-list');
+    
+    $('.load-spinner').show();
+    Meteor.call('getTracksFromGenres', genreList, function(error, result) {
+
+      createPlayer(result);
+      $('.load-spinner').hide();
+    });
+
+    $.post('radio', { genreList: genreList });
   }
 });
 
 
 /* Because currently we are re-seeding the database of genres on every start up
- * there are often times the session has old/stale IDs.
- *
- * When the page is rendered, calling this function will remove any id's
- * in the users session that don't actually exist in the DB.
- *
- */
+* there are often times the session has old/stale IDs.
+*
+* When the page is rendered, calling this function will remove any id's
+* in the users session that don't actually exist in the DB.
+*
+*/
 var updateSelectedGenres = function(){
-  var genreIds = Session.get('playlist');
+  var genreIds = Session.get('genre-list');
+  if (!genreIds){
+    return;
+  }
   var i = genreIds.length;
 
   // iteratively loop in reverse to avoid skipping an index
@@ -54,5 +65,5 @@ var updateSelectedGenres = function(){
     }
   }
 
-  Session.set('playlist', genreIds);
+  Session.set('genre-list', genreIds);
 };

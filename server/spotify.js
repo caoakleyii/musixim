@@ -23,7 +23,7 @@ Meteor.methods({
 
 
     // get the genre object from each genreId
-    _.each(genreIds.genres, function(genreId) {
+    _.each(genreIds, function(genreId) {
       var genre = Genres.findOne({ _id : genreId });
       if (genre) {
         genres.push(genre);

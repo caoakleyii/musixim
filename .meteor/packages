@@ -27,3 +27,5 @@ xinranxiao:accounts-spotify
 service-configuration
 sacha:spin
 accounts-base
+mizzao:jquery-ui
+u2622:persistent-session

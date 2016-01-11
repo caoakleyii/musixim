@@ -1,5 +1,5 @@
 Template.genre_card.onRendered(function(){
-  var genreIds = Session.get('playlist');
+  var genreIds = Session.get('genre-list');
 
   // check to see if this current genre is in their session play list.
   // if so show the added button.
@@ -22,14 +22,14 @@ Template.genre_card.events({
   * @param {object} Template - The instance of the template where the event fired.
   */
   "click .genre-add" : function(event, template) {
-    var currentPlaylist = Session.get('playlist');
+    var currentGenrelist = Session.get('genre-list');
 
-    if (!currentPlaylist) {
-      currentPlaylist = [];
+    if (!currentGenrelist) {
+      currentGenrelist = [];
     }
-    currentPlaylist.push(this._id);
+    currentGenrelist.push(this._id);
 
-    Session.set('playlist', currentPlaylist);
+    Session.set('genre-list', currentGenrelist);
 
     $(event.currentTarget).toggleClass('hide');
     $(event.currentTarget.nextElementSibling).toggleClass('hide');
@@ -42,17 +42,17 @@ Template.genre_card.events({
   * @param {object} Template - The instance of the template where the event fired.
   */
   "click .genre-remove" : function(event, template) {
-    var currentPlaylist = Session.get('playlist');
+    var currentGenrelist = Session.get('genre-list');
 
-    if (currentPlaylist) {
-      var genreIndex = currentPlaylist.indexOf(this._id);
+    if (currentGenrelist) {
+      var genreIndex = currentGenrelist.indexOf(this._id);
       while(genreIndex > -1) {
-        currentPlaylist.splice(genreIndex, 1);
-        genreIndex = currentPlaylist.indexOf(this._id);
+        currentGenrelist.splice(genreIndex, 1);
+        genreIndex = currentGenrelist.indexOf(this._id);
       }
     }
 
-    Session.set('playlist', currentPlaylist);
+    Session.set('genre-list', currentGenrelist);
 
     $(event.currentTarget).toggleClass('hide');
     $(event.currentTarget.previousElementSibling).toggleClass('hide');

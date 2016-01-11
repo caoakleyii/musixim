@@ -1,0 +1,27 @@
+@import "../variables.less";
+
+div.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: @footer-height;
+  z-index: 9999;
+  background-color: @footer-color;
+  border-top: 1px solid rgba(5, 5, 5, 0.95);
+  div {
+    height: @footer-height;
+  }
+  iframe {
+    height: 80px;
+    bottom: 0px;
+  }
+  color: rgba(138, 138, 138, 0.63);
+  .row {
+    .footer-col {
+      @media @phone-strict {
+        padding: 0px !important;
+      }
+    }
+  }
+
+}

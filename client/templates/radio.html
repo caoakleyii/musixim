@@ -1,10 +1,17 @@
 <template name="radio">
-  <div class="load-spinner">
-    <h5 class="center-align"> Generating a radio personalized just for you... </h5>
+  <div class="load-spinner center-align jquery-hide">
+    <span> Generating a radio personalized just for you... </span>
     {{> spinner}}
   </div>
-  <div class="row">
-      <div id="radio-container" class="col offset-s1 s10 center-align">
-      </div>
+  <div class="row left">
+    <div id="radio-container" class="col s12 m6 l3 radio-container">
+    </div>
+  </div>
+  <div class="row radio-buttons hide-on-small-only">
+    <div class="valign-wrapper">
+      <a href="#">
+        <i class="valign fa fa-heart-o  grey-text text-lighten-5 favorite-playlist"></i> 
+      </a>
+    </div>
   </div>
 </template>

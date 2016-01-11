@@ -1,0 +1,40 @@
+@import "variables.less";
+.radio-container {
+  width: 300px !important;
+  .radio {
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    margin: 2px 0px;
+    position: absolute;
+    background-color: @footer-color;
+    @media @phone-strict {
+      max-width: 80%;
+    }
+  }
+  .radio-popup {
+    height: 380px;
+  }
+}
+
+.load-spinner{
+  z-index: 2000000000;
+  background-color: #181818;
+  position: relative;
+  span {
+    z-index: 2000000000;
+    display: inline;
+    position: relative;
+  }
+  .spinner-container {
+    .spinner {
+      margin-top: 7px;
+    }
+  }
+}
+
+.radio-buttons {
+  margin-left: 325px;
+  .favorite-playlist {
+    font-size: 2.5rem;
+  }
+
+}
