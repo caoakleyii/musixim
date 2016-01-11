@@ -15,13 +15,20 @@ Template.radio.events({
   }
 });
 
-function createPlayer(tracks){
+/*
+* Creates a spotify web player, (Play button) using the array of track objects
+* provided.
+*
+* @param {array} tracks - An array of track objects
+*/
+var createPlayer = function (tracks) {
   var stringOfTrackIds = "";
 
   _.each(tracks, function(track, index) {
     var id = track.track.id;
     if(index === 0) {
       stringOfTrackIds += id;
+      return;
     }
     stringOfTrackIds += "," + id;
   });
@@ -31,4 +38,4 @@ function createPlayer(tracks){
   playerIframe = playerIframe.replace('|TRACKS|', stringOfTrackIds);
 
   $('#radio-container').html(playerIframe);
-}
+};

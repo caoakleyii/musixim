@@ -18,8 +18,8 @@ Template.genre_card.events({
   /*
   * Add a genre to the users play list.
   *
-  * Event - The window event object passed to the event handler
-  * Template - The instance of the template where the event fired.
+  * @param {object} Event - The window event object passed to the event handler
+  * @param {object} Template - The instance of the template where the event fired.
   */
   "click .genre-add" : function(event, template) {
     var currentPlaylist = Session.get('playlist');
@@ -38,8 +38,8 @@ Template.genre_card.events({
   /*
   * Removes a genre from the users play list.
   *
-  * Event - The window event object passed to the event handler
-  * Template - The instance of the template where the event fired.
+  * @param {object} Event - The window event object passed to the event handler
+  * @param {object} Template - The instance of the template where the event fired.
   */
   "click .genre-remove" : function(event, template) {
     var currentPlaylist = Session.get('playlist');

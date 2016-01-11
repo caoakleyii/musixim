@@ -12,8 +12,8 @@ ServiceConfiguration.configurations.update(
 
 Meteor.methods({
 
-  /*
-  *   Retrieves recommended tracks based on the provided genres.
+ /*
+  *   Public method that retrieves recommended tracks based on the provided genres.
   *
   */
   getTracksFromGenres : function(genreIds) {
@@ -46,7 +46,7 @@ Meteor.methods({
       }
 
       randomTracks = getRandomTracks(selectedPlaylists, 25);
-      
+
       if (!randomTracks) {
         return;
       }
@@ -54,11 +54,21 @@ Meteor.methods({
 
     });
 
-    shuffle(tracks);
+    _.shuffle(tracks);
     return tracks;
   }
 });
 
+
+/*
+ * Private method that retrieves random playlist(s), from a select genre.
+ *
+ * @param {String} genre  - The id of the genre the playlists should belong to.
+ * @param {number} amount - The amount of playlists to be selected.
+ *
+ * @return {array} - Returns an array of playlists objects or undefined if an
+ *                   error occured.
+ */
 var getRandomPlaylists = function(genre, amount){
   var spotifyApi = new SpotifyWebApi();
   var selectedPlaylists = [];
@@ -109,6 +119,16 @@ var getRandomPlaylists = function(genre, amount){
   return selectedPlaylists;
 };
 
+/*
+ * Private method that retrieves iteratively selects random track(s) from a list
+ * of playlist(s).
+ *
+ * @param {String} selectedPlaylists - An array of playlists where the tracks
+ *                                     should be selected from.
+ * @param {number} amount            - The amount of playlists to be selected.
+ *
+ * @return {array} - Returns an array of track objects
+ */
 var getRandomTracks = function(selectedPlaylists, amount){
   var tracks = [];
   while(tracks.length < amount) {
@@ -119,6 +139,15 @@ var getRandomTracks = function(selectedPlaylists, amount){
 };
 
 
+/*
+ * Private method that handles the process of randomly selecting a track
+ * from a list of playlist(s).
+ *
+ * @param {String} selectedPlaylists - A playlists where the tracks
+ *                                     should be selected from .
+ *
+ * @return {object} - Returns of track objects
+ */
 var getRandomTrack = function(selectedPlaylist){
   if (!selectedPlaylist) {
     return;
@@ -205,28 +234,3 @@ var successfulApiGetResponse = function(response) {
 var randomNumber = function(lowerBound, upperBound){
   return Math.floor((Math.random() * (upperBound)) + lowerBound);
 };
-
-/**
- * Shuffles an array using Fisher-Yates Shuffle (aka Knuth)
- *
- * @param {Array} array - The array to be shuffled
- * @returns {Array} Returns the shuffled array.
- */
-function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
-
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
-
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-
-  return array;
-}
