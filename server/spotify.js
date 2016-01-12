@@ -54,8 +54,7 @@ Meteor.methods({
 
     });
 
-    _.shuffle(tracks);
-    return tracks;
+    return _.shuffle(tracks);
   }
 });
 
