@@ -85,6 +85,7 @@ var getRandomPlaylists = function(genre, amount){
 
   // check if the api get call was successful
   if (!successfulApiGetResponse(response)) {
+    console.log('Failed to retrieve spotify playlists for category/genre: ', genre);
     return undefined;
   }
 
@@ -164,6 +165,7 @@ var getRandomTrack = function(selectedPlaylist){
   }
 
   if (!successfulApiGetResponse(tracksResponse)) {
+    console.log('Failed to get random track from playlist: ', selectedPlaylist )
     // continue to next genre in each loop.
     return; // this does not return from method.call
   }
