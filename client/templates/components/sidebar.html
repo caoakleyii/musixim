@@ -1,0 +1,32 @@
+<template name="sidebar">
+  <div class="sidebar">
+
+    <div class="sidebar-menu">
+      <a class="btn-floating btn waves-effect waves-light red darken-2 sidebar-menu-btn">
+        <i class="mdi-navigation-menu"></i>
+      </a>
+    </div>
+
+    {{#if currentUser }}
+    <div class="sidebar-menu">
+      <ul>
+        <li>
+          <div class="sidebar-header">Playlists</div>
+        </li>
+
+        {{#each usersPlaylists }}
+        <li>
+          <div class="sidebar-item">
+            <i class="fa fa-music sidebar-item"></i> {{ name }}
+          </div>
+        </li>
+
+        {{/each}}
+      </ul>
+    </div>
+    {{ /if }}
+
+  </div>
+  <div id="sidebar-close">
+  </div>
+</template>

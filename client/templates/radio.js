@@ -1,3 +1,6 @@
+var radio = {
+  isUp : false
+};
 
 Template.radio.onRendered(function(){
   // create an empty player
@@ -8,6 +11,32 @@ Template.radio.onRendered(function(){
 Template.radio.events({
   "click .favorite-playlist": function(event, template){
     // TODO: finish creating favorite playlist.
+    $(event.target).toggleClass('red-text text-darken-2');
+    $('#savePlaylist').openModal();
+  },
+  "click .show-playlist-button" : function(event, template) {
+    $(event.target).toggleClass('light-blue-text text-darken-2');
+
+    if (radio.isUp) {
+      $('.radio').slideRadioDown();
+      radio.isUp = false;
+    } else {
+      $('.radio').slideRadioUp();
+      radio.isUp = true;
+    }
+  },
+  "submit .save-playlist" : function (event) {
+    event.preventDefault();
+
+    var playlist = {
+      name: event.target.playlistName.value,
+      tracklist: Session.get('tracklist')
+    };
+
+    Meteor.call('createPlaylist', playlist, function(error, result) {
+
+    });
+
   }
 });
 
@@ -41,8 +70,6 @@ createPlayer = function (tracks) {
 
   $('#radio-container').html(playerIframe);
 
-  $('.radio').hover(slideRadioUp, slideRadioDown);
-
 };
 
 /*
@@ -50,8 +77,8 @@ createPlayer = function (tracks) {
 *
 * @param {object} event - accepts the event object of the enter hover event.
 */
-var slideRadioUp = function(event) {
-  $(event.target).animate({
+$.fn.slideRadioUp = function(event) {
+  $(this).animate({
     height: "380px"
   }, 800);
 };
@@ -61,8 +88,8 @@ var slideRadioUp = function(event) {
 *
 * @param {object} event - accepts the event object of the leave hover event.
 */
-var slideRadioDown = function(event) {
-  $(event.target).animate({
+$.fn.slideRadioDown = function(event) {
+  $(this).animate({
     height: "80px",
   }, 800);
 };

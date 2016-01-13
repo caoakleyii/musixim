@@ -40,5 +40,9 @@ Template.header.events({
        // do things on sign in
        // console.log(Meteor.user());
      });
+  },
+  "click .sidebar-menu-btn": function(event, template){
+     $('.sidebar').animate({width: 'toggle'}, 800);
+
   }
 });

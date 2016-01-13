@@ -1,17 +1,46 @@
 <template name="radio">
   <div class="load-spinner center-align jquery-hide">
     <span> Generating a radio personalized just for you... </span>
-    {{> spinner}}
+    <div class="">
+      <div class="preloader-wrapper small active">
+        <div class="spinner-layer spinner-green-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="row left">
     <div id="radio-container" class="col s12 m6 l3 radio-container">
+
     </div>
   </div>
   <div class="row radio-buttons hide-on-small-only">
-    <div class="valign-wrapper">
-      <a href="#">
-        <i class="valign fa fa-heart-o  grey-text text-lighten-5 favorite-playlist"></i> 
+    <div class="row valign-wrapper radio-buttons-container">
+      <a href="#" class="col show-playlist-button grey-text text-lighten-5">
+        <i class="fa fa-list"></i>
+      </a>
+      <a href="#" class="col grey-text text-lighten-5">
+        <i class="valign fa fa-heart-o favorite-playlist"></i>
       </a>
     </div>
+  </div>
+
+  <div id="savePlaylist" class="modal">
+    <form class="save-playlist">
+      <div class="modal-content">
+        <h4>Save your playlist</h4>
+        <input type="text" class="validate" id="playlistName" name="playlistName" placeholder="Untitled Playlist #1">
+
+      </div>
+      <div class="modal-footer">
+        <button type="submit" name="action" id="btnSavePlaylist" class="modal-action modal-close waves-effect waves-green btn-flat">Save</button>
+      </div>
+    </form>
   </div>
 </template>
