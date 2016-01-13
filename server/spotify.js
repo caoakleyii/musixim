@@ -155,7 +155,8 @@ var getRandomTrack = function(selectedPlaylist){
   var spotifyApi = new SpotifyWebApi();
   var trackQueryOptions = {
     limit : 25,
-    offset : 0
+    offset : 0,
+    market: 'US'
   };
 
   var tracksResponse  = spotifyApi.getPlaylistTracks(selectedPlaylist.owner.id, selectedPlaylist.id, trackQueryOptions);

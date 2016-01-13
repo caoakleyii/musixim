@@ -51,6 +51,10 @@ createPlayer = function (tracks) {
 
   if (tracks) {
     _.each(tracks, function(track, index) {
+      if(!track) {
+        return;
+      }
+      
       var id = track.track.id;
       if(index === 0) {
         stringOfTrackIds += id;
