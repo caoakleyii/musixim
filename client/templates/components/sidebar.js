@@ -27,5 +27,8 @@ Template.sidebar.events({
   },
   "click #sidebar-close" : function(event, template) {
 
+  },
+  "click #logout" : function(event, template) {
+    Meteor.logout();
   }
 });

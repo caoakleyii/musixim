@@ -17,11 +17,22 @@
 </head>
 
 <template name="layout">
+
+  {{#if currentUser}}
+
   {{> header }}
   {{> sidebar }}
-  <div>
+
+  <div class="content-body">
     {{> yield }}
   </div>
-
   {{> footer }}
+
+  {{else}}
+  <div>
+    {{> sign_in}}
+  </div>
+
+  {{/if}}
+
 </template>

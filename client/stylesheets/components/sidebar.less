@@ -5,6 +5,7 @@ div.sidebar {
   z-index: 99999;
   top: 0;
   background-color: rgb(24,24,24);
+  box-shadow: #000 2px 0px 15px;
   color: #fff;
   .sidebar-menu {
     margin: 13px 15.5px;
@@ -17,6 +18,11 @@ div.sidebar {
     letter-spacing: 0.2rem;
     font-style: italic;
     font-weight: bolder;
+    margin-top: 20px;
+  }
+  .sidebar-footer {
+    position: absolute;
+    bottom: 0;
   }
 }
 div.sidebar-close {
@@ -25,4 +31,10 @@ div.sidebar-close {
   position:fixed;
   z-index: 99998;
   top: 0;
+}
+a {
+  color: gray;
+  &:hover{
+    color: #039be5;
+  }
 }

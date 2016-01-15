@@ -27,34 +27,24 @@ Template.genre_card.events({
     if (!currentGenrelist) {
       currentGenrelist = [];
     }
-    currentGenrelist.push(this._id);
 
-    Session.set('genre-list', currentGenrelist);
+    var genreIndex = currentGenrelist.indexOf(this._id);
 
-    $(event.currentTarget).toggleClass('hide');
-    $(event.currentTarget.nextElementSibling).toggleClass('hide');
-  },
-
-  /*
-  * Removes a genre from the users play list.
-  *
-  * @param {object} Event - The window event object passed to the event handler
-  * @param {object} Template - The instance of the template where the event fired.
-  */
-  "click .genre-remove" : function(event, template) {
-    var currentGenrelist = Session.get('genre-list');
-
-    if (currentGenrelist) {
-      var genreIndex = currentGenrelist.indexOf(this._id);
+    if(genreIndex > -1) {
+      // remove that genre from the list
       while(genreIndex > -1) {
         currentGenrelist.splice(genreIndex, 1);
         genreIndex = currentGenrelist.indexOf(this._id);
       }
+    } else {
+      // add the genre to the list
+      currentGenrelist.push(this._id);
     }
 
+    // update the genre list
     Session.set('genre-list', currentGenrelist);
 
-    $(event.currentTarget).toggleClass('hide');
-    $(event.currentTarget.previousElementSibling).toggleClass('hide');
+    $(template.firstNode).find('#btn-add').toggleClass('hide');
+    $(template.firstNode).find('#btn-added').toggleClass('hide');
   }
 });

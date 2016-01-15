@@ -1,0 +1,17 @@
+<template name="genre_select">
+  <div class="row genre-select">
+    <div class="row  col offset-s1 offset-m2 s10 m8">
+      <div class="col s12">
+        <span> <h5 class="center-align"> What genres interest you? </h5> </span>
+      </div>
+      {{#each genres}}
+      <div class="col s12 m6 l3">
+        {{> genre_card}}
+      </div>
+      {{/each}}
+      <div class="col s12 center-align">
+        <div id="btn-jam-out" class="waves-effect waves-light amber darken-1 btn-large btn-jam-out">Jam Out<i class="material-icons right">send</i></div>
+      </div>
+    </div>
+  </div>
+</template>

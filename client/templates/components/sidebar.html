@@ -11,22 +11,31 @@
     <div class="sidebar-menu">
       <ul>
         <li>
-          <div class="sidebar-header">Playlists</div>
+          <input placeholder="Search" id="search" name="search" type="text" class="validate">
+        </li>
+        <li>
+          <a href="/genres">Make Me A Playlist</a>
+        </li>
+        <li>
+          <div class="sidebar-header">My Playlists</div>
         </li>
 
         {{#each usersPlaylists }}
         <li>
           <div class="sidebar-item">
-            <i class="fa fa-music sidebar-item"></i> {{ name }}
+            <a href="#"> <i class="fa fa-music sidebar-item"></i> {{ name }} </a>
           </div>
         </li>
 
         {{/each}}
       </ul>
     </div>
+    <div class="sidebar-menu sidebar-footer">
+      <ul>
+        <li><a id="logout" href="/"> Logout </a></li>
+      </ul>
+    </div>
     {{ /if }}
 
-  </div>
-  <div id="sidebar-close">
   </div>
 </template>

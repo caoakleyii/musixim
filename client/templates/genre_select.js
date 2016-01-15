@@ -1,5 +1,5 @@
 
-Template.home.helpers({
+Template.genre_select.helpers({
   create: function(){
 
   },
@@ -11,13 +11,13 @@ Template.home.helpers({
   },
 });
 
-Template.home.onRendered(function() {
+Template.genre_select.onRendered(function() {
 
   updateSelectedGenres();
 
 });
 
-Template.home.events({
+Template.genre_select.events({
   /*
   * Starts the radio for the user based on the genres they have selected.
   *
@@ -26,7 +26,7 @@ Template.home.events({
   */
   "click #btn-jam-out": function(event, template){
     var genreList = Session.get('genre-list');
-    
+
     $('.load-spinner').show();
     Meteor.call('getTracksFromGenres', genreList, function(error, result) {
 

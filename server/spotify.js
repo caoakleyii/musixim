@@ -166,7 +166,7 @@ var getRandomTrack = function(selectedPlaylist){
   }
 
   if (!successfulApiGetResponse(tracksResponse)) {
-    console.log('Failed to get random track from playlist: ', selectedPlaylist )
+    console.log('Failed to get random track from playlist: ', selectedPlaylist );
     // continue to next genre in each loop.
     return; // this does not return from method.call
   }
