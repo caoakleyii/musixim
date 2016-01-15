@@ -4,5 +4,5 @@
       "default_method": "persistent"
     },
     "production" : false
-  },
+  }
 }
