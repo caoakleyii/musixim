@@ -1,5 +1,9 @@
 Template.sign_in.onRendered(function(){
-  $('body').addClass('sign-in-body');
+  if(!Metor.user()) {
+    $('body').addClass('sign-in-body');
+  } else {
+    $('body').removeClass('sign-in-body');
+  }
 });
 
 Template.sign_in.events({
@@ -17,6 +21,7 @@ Template.sign_in.events({
       // do things on sign in
       // console.log(Meteor.user());
       // Router.go('/home')
+      $('body').removeClass('sign-in-body');
     });
   }
 });
