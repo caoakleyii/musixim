@@ -29,6 +29,7 @@ Template.sidebar.events({
 
   },
   "click #logout" : function(event, template) {
+    $('body').addClass('sign-in-body');
     Meteor.logout();
   }
 });
