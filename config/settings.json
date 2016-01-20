@@ -1,9 +1,0 @@
-{
-  "public": {
-    "persistent_session": {
-      "default_method": "persistent"
-    },
-    "production" : false
-  },
-  "spotifyKey" : "edc77ac454e046158e08a11eeabb7c49"
-}
